@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Run Maven build
-                sh './mvnw quarkus:dev'
+                sh './mvnw clean package'
             }
         }
 
