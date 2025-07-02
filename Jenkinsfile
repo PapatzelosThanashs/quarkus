@@ -12,7 +12,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 sh 'chmod +x mvnw'
-                sh 'rm -rf ~/.m2/repository/org/mvnpm/at/qomponent/qui-directory-tree'
+                sh 'rm -rf ~/.m2/repository/org/mvnpm/echarts/'
 
             }
     }
