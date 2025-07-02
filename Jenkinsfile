@@ -12,7 +12,6 @@ pipeline {
         stage('Prepare') {
             steps {
                 sh 'chmod +x mvnw'
-                sh 'rm -rf ~/.m2/repository/org/mvnpm/echarts/'
 
             }
     }
