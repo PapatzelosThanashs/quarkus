@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Run Maven build
-                sh 'mvn quarkus:dev'
+                sh './mvn quarkus:dev'
             }
         }
 
