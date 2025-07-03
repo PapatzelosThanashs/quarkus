@@ -6,9 +6,9 @@ pipeline {
         kind: Pod
         namespace: jenkins
         spec:
-        containers:
-        - name: myagent
-            image:myagent:v1
+            containers:
+            - name: myagent
+              image:myagent:v1
         """
         }
     }
