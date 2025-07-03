@@ -4,7 +4,8 @@ pipeline {
             yaml """
         apiVersion: v1
         kind: Pod
-        namespace: jenkins
+        metadata:
+            namespace: jenkins
         spec:
             containers:
             - name: myagent
