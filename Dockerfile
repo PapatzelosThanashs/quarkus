@@ -1,3 +1,3 @@
-FROM openjdk:25-ea-21-jdk-slim
+FROM docker.io/openjdk:25-ea-21-jdk-slim
 COPY /home/jenkins/agent/workspace/mypipeline/target/my-app-1.0.0-SNAPSHOT.jar ./
 CMD ["java", "-jar", "my-app-1.0.0-SNAPSHOT.jar"]
