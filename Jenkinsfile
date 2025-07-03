@@ -2,15 +2,15 @@ pipeline {
     agent {
         kubernetes {
             yaml """
-        apiVersion: v1
-        kind: Pod
-        metadata:
-            namespace: jenkins
-        spec:
-            containers:
-            - name: myagent
-              image:myagent:v1
-        """
+apiVersion: v1
+kind: Pod
+metadata:
+    namespace: jenkins
+spec:
+    containers:
+    - name: myagent
+      image:myagent:v1
+"""
         }
     }
 
