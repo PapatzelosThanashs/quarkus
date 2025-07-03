@@ -10,6 +10,9 @@ spec:
     containers:
     - name: myagent
       image: myagent:v1
+      command:
+      - cat
+      tty: true 
 """
         }
     }
