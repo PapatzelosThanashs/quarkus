@@ -15,21 +15,26 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout source code from your SCM (e.g., Git)
-                checkout scm
+                container('myagent') {
+                     checkout scm
+                }
+            
             }
         }
 
-        stage('Prepare') {
-            steps {
-                sh 'chmod +x mvnw'
+       // stage('Prepare') {
+           // steps {
+           //     sh 'chmod +x mvnw'
                 //sh 'rm -rf ~/.m2/repository/org/mvnpm/echarts/'
-            }
-    }
+          //  }
+   // }
         stage('Build') {
             steps {
+                  container('myagent') {
+                    sh 'mvn clean package'
+                }
                 // Run Maven build
-                sh './mvnw clean package'
+                //sh './mvnw clean package'
             }
         }
 
