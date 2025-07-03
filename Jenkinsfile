@@ -14,7 +14,10 @@ spec:
       - cat
       tty: true
     - name: buildah
-      image: quay.io/buildah/stable:latest   
+      image: quay.io/buildah/stable:latest
+      command:
+      - cat
+      tty: true   
 """
         }
     }
