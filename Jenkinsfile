@@ -22,9 +22,9 @@ spec:
         - mountPath: /dev/fuse
           name: dev-fuse
     volumes:
-    - name: dev-fuse
-        hostPath:
-        path: /dev/fus   
+        - name: dev-fuse
+           hostPath:
+            path: /dev/fus   
 """
         }
     }
