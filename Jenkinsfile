@@ -9,7 +9,7 @@ metadata:
 spec:
     containers:
     - name: myagent
-      image:myagent:v1
+      image: myagent:v1
 """
         }
     }
