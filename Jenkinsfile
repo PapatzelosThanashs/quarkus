@@ -17,7 +17,14 @@ spec:
       image: quay.io/buildah/stable:latest
       command:
       - cat
-      tty: true   
+      tty: true
+      volumeMounts:
+        - mountPath: /dev/fuse
+          name: dev-fuse
+    volumes:
+    - name: dev-fuse
+        hostPath:
+        path: /dev/fus   
 """
         }
     }
