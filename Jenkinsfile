@@ -1,5 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yaml """
+        apiVersion: v1
+        kind: Pod
+        spec:
+        containers:
+        - name: myagent
+            image:myagent:v1
+        """
+        }
+    }
 
     stages {
         stage('Checkout') {
@@ -12,7 +23,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 sh 'chmod +x mvnw'
-
+                //sh 'rm -rf ~/.m2/repository/org/mvnpm/echarts/'
             }
     }
         stage('Build') {
