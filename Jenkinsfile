@@ -13,20 +13,11 @@ spec:
       command:
       - cat
       tty: true
-    - name: buildah
-      image: quay.io/buildah/stable:latest
+    - name: kaniko
+      image: gcr.io/kaniko-project/executor:latest
       command:
       - cat
-      tty: true
-      securityContext:
-        privileged: true
-      volumeMounts:
-        - mountPath: /dev/fuse
-          name: dev-fuse
-    volumes:
-    - name: dev-fuse
-      hostPath:
-        path: /dev/fuse   
+      tty: true   
 """
         }
     }
