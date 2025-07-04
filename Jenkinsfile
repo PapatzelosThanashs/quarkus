@@ -16,8 +16,8 @@ spec:
     volumeMounts:
     - name: dockersock
       mountPath: /var/run/docker.sock
-  - name: kubectl
-    image: kubectl-agent:myversion
+  - name: helm
+    image: alpine/helm:3.18
     command:
     - cat
     tty: true      
@@ -75,16 +75,16 @@ spec:
 
         stage('Deploy-chart') {
             steps {
-                container('kubectl') {
+                container('helm') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
                         sh '''
                             cp $KUBECONFIG_FILE ~/.kube/config
                             chmod 600 ~/.kube/config
 
-                            kubectl version
+                            helm version
                             
-
-                            sleep 9999999
+                            
+                            
                         '''
                     }
                 }
