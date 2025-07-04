@@ -73,9 +73,9 @@ spec:
             }
         }
 
-          stage('Deploy-chart') {
+        stage('Deploy-chart') {
             steps {
-                  container('kubectl') {
+                container('kubectl') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
                         sh '''
                             cp $KUBECONFIG_FILE $KUBECONFIG
@@ -86,11 +86,10 @@ spec:
 
                             kubectl get pods -n jenkins
                         '''
-        }
+                    }
+                }
             }
         }
-        
 
     }
-
 }
