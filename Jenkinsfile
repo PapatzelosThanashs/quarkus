@@ -17,7 +17,7 @@ spec:
     - name: dockersock
       mountPath: /var/run/docker.sock
   - name: kubectl
-    image: kubectl-agent:latest
+    image: kubectl-agent:myversion
     command:
     - cat
     tty: true      
