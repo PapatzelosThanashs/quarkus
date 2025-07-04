@@ -53,7 +53,7 @@ spec:
                   container('kaniko') {
                     //sh 'buildah bud -t quarkus:myversion .'
                     //sh 'buildah push myimage:latest docker://myregistry/myimage:latest'
-                   sh '/kaniko/executor  --dockerfile Dockerfile'
+                   sh '/kaniko/executor  --dockerfile Dockerfile --no-push'
  
                 }
                 // Run Maven build
