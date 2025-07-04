@@ -87,7 +87,7 @@ spec:
                             sed -i 's|127.0.0.1|host.docker.internal|g' $KUBECONFIG_FILE
                             export KUBECONFIG=$KUBECONFIG_FILE
 
-                            helm install my-newchart ./my-chart -n jenkins
+                            helm install my-chart ./my-chart -n jenkins
                             
                             
                         '''
