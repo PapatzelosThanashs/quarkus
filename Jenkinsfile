@@ -7,20 +7,20 @@ kind: Pod
 metadata:
     namespace: jenkins
 spec:
-    containers:
-    - name: myagent
-      image: myagent:v1
-      command:
-      - cat
-      tty: true
-      volumeMounts:
-        - name: docker_sock
-          mountPath: /var/run/docker.sock
-          
-    volumes:
-        - name: docker_sock
-          hostPath:
-            path: /var/run/docker.sock     
+  containers:
+  - name: myagent
+    image: myagent:v1
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+    - name: docker_sock
+      mountPath: /var/run/docker.sock
+
+  volumes:
+  - name: docker_sock
+    hostPath:
+      path: /var/run/docker.sock   
 """
         }
     }
