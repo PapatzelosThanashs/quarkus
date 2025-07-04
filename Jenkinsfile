@@ -72,13 +72,15 @@ spec:
                 //sh './mvnw clean package'
             }
         }
-
+        //export KUBECONFIG=$KUBECONFIG_FILE
         stage('Deploy-chart') {
             steps {
                 container('helm') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
                         sh '''
-                            export KUBECONFIG=$KUBECONFIG_FILE
+                            mkdir -p /root/.kube
+                            cp $KUBECONFIG_FILE /root/.kube/config
+                            chmod 600 /root/.kube/config
 
                             helm version
                             helm list -n jenkins
