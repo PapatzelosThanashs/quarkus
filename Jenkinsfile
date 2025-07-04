@@ -78,10 +78,11 @@ spec:
                 container('helm') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
                         sh '''
-                            cp $KUBECONFIG_FILE ~/.kube/config
-                            chmod 600 ~/.kube/config
+                            cp $KUBECONFIG_FILE /root/.kube/config
+                            chmod 600 /root/.kube/config
 
                             helm version
+                            helm list -n jenkins
                             
                             
                             
