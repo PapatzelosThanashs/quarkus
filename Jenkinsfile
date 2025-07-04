@@ -14,11 +14,11 @@ spec:
     - cat
     tty: true
     volumeMounts:
-    - name: docker_sock
+    - name: dockersock
       mountPath: /var/run/docker.sock
 
   volumes:
-  - name: docker_sock
+  - name: dockersock
     hostPath:
       path: /var/run/docker.sock   
 """
