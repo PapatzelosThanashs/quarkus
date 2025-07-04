@@ -73,15 +73,25 @@ spec:
             }
         }
         //export KUBECONFIG=$KUBECONFIG_FILE
+                            //cp $KUBECONFIG_FILE /root/.kube/config
+                            //chmod 600 /root/.kube/config
+
+                            //helm version
+                            //helm list -n jenkins
         stage('Deploy-chart') {
             steps {
                 container('helm') {
-                   
-                        sh 'helm install my-newchart ./my-chart -n jenkins'
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
+                        sh '''
+                             # Replace 127.0.0.1 with host IP reachable from the pod
+                            sed -i 's|127.0.0.1|host.docker.internal|g' $KUBECONFIG_FILE
+                            export KUBECONFIG=$KUBECONFIG_FILE
+
+                            helm install my-newchart ./my-chart -n jenkins
                             
                             
-                            
-                    
+                        '''
+                    }
                 }
             }
         }
