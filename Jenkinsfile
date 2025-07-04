@@ -50,9 +50,11 @@ spec:
 
           stage('Build-image') {
             steps {
-                  container('buildah') {
-                    sh 'buildah bud -t quarkus:myversion .'
+                  container('kaniko') {
+                    //sh 'buildah bud -t quarkus:myversion .'
                     //sh 'buildah push myimage:latest docker://myregistry/myimage:latest'
+                   sh '/kaniko/executor  --dockerfile Dockerfile'
+ 
                 }
                 // Run Maven build
                 //sh './mvnw clean package'
