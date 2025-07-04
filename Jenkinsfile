@@ -51,7 +51,7 @@ spec:
             }
         }
 
-          stage('Build-image') {
+        stage('Build-image') {
             steps {
                   container('myagent') {
                     sh 'docker build -t quarkus:myversion .'
@@ -63,6 +63,7 @@ spec:
                 //sh './mvnw clean package'
             }
         }
+        
 
     }
 
