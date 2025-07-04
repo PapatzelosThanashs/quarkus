@@ -77,7 +77,7 @@ spec:
             steps {
                 container('helm') {
                    
-                        sh 'helm list -n jenkins'
+                        sh 'helm install my-newchart ./my-chart -n jenkins'
                             
                             
                             
