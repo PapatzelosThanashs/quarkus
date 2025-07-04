@@ -91,5 +91,17 @@ spec:
             }
         }
 
+        stage('sleep') {
+            steps {
+                container('kubectl') {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
+                        sh '''
+                           tail -f /dev/null
+                        '''
+                    }
+                }
+            }
+        }
+
     }
 }
