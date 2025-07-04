@@ -3,4 +3,3 @@
 !target/*-runner.jar
 !target/lib/*
 !target/quarkus-app/*
-!target/my-app-1.0.0-SNAPSHOT.jar
