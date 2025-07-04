@@ -13,6 +13,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: kubectl
+    image: bitnami/kubectl:latest
+    command:
+    - cat
+    tty: true  
     volumeMounts:
     - name: dockersock
       mountPath: /var/run/docker.sock
@@ -70,7 +75,7 @@ spec:
 
           stage('Deploy-chart') {
             steps {
-                  container('myagent') {
+                  container('kubectl') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
                         sh '''
                             cp $KUBECONFIG_FILE $KUBECONFIG
