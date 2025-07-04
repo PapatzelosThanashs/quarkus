@@ -13,11 +13,14 @@ spec:
       command:
       - cat
       tty: true
-    - name: kaniko
-      image: gcr.io/kaniko-project/executor:debug
-      command:
-      - cat
-      tty: true   
+      volumeMounts:
+        - name: docker_sock
+          mountPath: /var/run/docker.sock
+          
+    volumes:
+        - name: docker_sock
+          hostPath:
+            path: /var/run/docker.sock     
 """
         }
     }
@@ -50,10 +53,10 @@ spec:
 
           stage('Build-image') {
             steps {
-                  container('kaniko') {
-                    //sh 'buildah bud -t quarkus:myversion .'
+                  container('myagent') {
+                    sh 'docker build -t quarkus:myversion .'
                     //sh 'buildah push myimage:latest docker://myregistry/myimage:latest'
-                    sh '/kaniko/executor --context=/home/jenkins/agent/workspace/mypipeline/target --dockerfile Dockerfile --no-push'
+                   
  
                 }
                 // Run Maven build
