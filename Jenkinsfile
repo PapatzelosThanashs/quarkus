@@ -78,8 +78,8 @@ spec:
                 container('kubectl') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
                         sh '''
-                            cp $KUBECONFIG_FILE $KUBECONFIG
-                            chmod 600 $KUBECONFIG
+                            cp $KUBECONFIG_FILE ~/.kube/config
+                            chmod 600 ~/.kube/config
 
                             kubectl version
                             
