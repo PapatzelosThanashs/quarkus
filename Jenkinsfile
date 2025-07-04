@@ -82,7 +82,7 @@ spec:
                             chmod 600 $KUBECONFIG
 
                             kubectl version
-                            kubectl config current-context
+                            
 
                             sleep 9999999
                         '''
