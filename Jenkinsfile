@@ -84,24 +84,13 @@ spec:
                             kubectl version
                             kubectl config current-context
 
-                            kubectl get pods -n jenkins
+                            sleep 9999999
                         '''
                     }
                 }
             }
         }
 
-        stage('sleep') {
-            steps {
-                container('kubectl') {
-                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
-                        sh '''
-                           tail -f /dev/null
-                        '''
-                    }
-                }
-            }
-        }
 
     }
 }
