@@ -25,6 +25,10 @@ spec:
         }
     }
 
+    environment {
+    KUBECONFIG = "${WORKSPACE}/kubeconfig"  // kubectl will use this path
+  }
+
     stages {
         stage('Checkout') {
             steps {
@@ -61,6 +65,23 @@ spec:
                 }
                 // Run Maven build
                 //sh './mvnw clean package'
+            }
+        }
+
+          stage('Deploy-chart') {
+            steps {
+                  container('myagent') {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
+                        sh '''
+                            cp $KUBECONFIG_FILE $KUBECONFIG
+                            chmod 600 $KUBECONFIG
+
+                            kubectl version
+                            kubectl config current-context
+
+                            kubectl get pods -n jenkins
+                        '''
+        }
             }
         }
         
