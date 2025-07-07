@@ -9,12 +9,17 @@ metadata:
 spec:
   dnsPolicy: ClusterFirst 
   containers:
-  - name: myagent
+  - name: mvn
+    image: maven:3.9.9
+    command:
+    - cat
+    tty: true
+  - name: docker
     image: docker:dind
     privileged: true
     command:
     - cat
-    tty: true
+    tty: true  
   - name: helm
     image: alpine/helm:3.18
     command:
@@ -35,7 +40,7 @@ spec:
     stages {
         stage('Checkout') {
             steps {
-                container('myagent') {
+                container('mvn') {
                      checkout scm
                 }
             
@@ -50,7 +55,7 @@ spec:
    // }
         stage('Build-jar') {
             steps {
-                  container('myagent') {
+                  container('mvn') {
                     sh 'chmod +x ./mvnw'
                     sh './mvnw clean package'
                 }
@@ -61,7 +66,7 @@ spec:
 
         stage('Build-image') {
             steps {
-                  container('myagent') {
+                  container('docker') {
                     script {
                                 myImage = docker.build("${NEXUS_REGISTRY}/quarkus:${IMAGE_TAG}")
 
@@ -115,7 +120,7 @@ spec:
 
         stage('Push-docker-image') {
             steps {
-                container('myagent') {
+                container('docker') {
                     script {
                             docker.withRegistry("http://${NEXUS_REGISTRY}", "${DOCKER_CREDS_ID}") {
                             myImage.push("${IMAGE_TAG}") 
