@@ -16,10 +16,7 @@ spec:
     tty: true
   - name: docker
     image: docker:dind
-    privileged: true
-    command:
-    - cat
-    tty: true  
+    privileged: true 
   - name: helm
     image: alpine/helm:3.18
     command:
