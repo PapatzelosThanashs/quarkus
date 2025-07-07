@@ -51,6 +51,7 @@ spec:
         stage('Build-jar') {
             steps {
                   container('myagent') {
+                    sh 'chmod +x ./mvnw'
                     sh './mvnw clean package'
                 }
                 // Run Maven build
