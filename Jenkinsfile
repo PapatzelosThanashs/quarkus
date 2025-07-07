@@ -11,7 +11,7 @@ spec:
   containers:
   - name: myagent
     image: docker:dind
-    privileged:true
+    privileged: true
     command:
     - cat
     tty: true
