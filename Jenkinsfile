@@ -10,23 +10,16 @@ spec:
   dnsPolicy: ClusterFirst 
   containers:
   - name: myagent
-    image: myagent:v1
+    image: docker:dind
     command:
     - cat
     tty: true
-    volumeMounts:
-    - name: dockersock
-      mountPath: /var/run/docker.sock
   - name: helm
     image: alpine/helm:3.18
     command:
     - cat
     tty: true      
-
-  volumes:
-  - name: dockersock
-    hostPath:
-      path: /var/run/docker.sock   
+  
 """
         }
     }
@@ -34,7 +27,7 @@ spec:
     environment {
     KUBECONFIG = "${WORKSPACE}/kubeconfig"  // kubectl will use this path
     DOCKER_CREDS_ID = 'nexus-creds' 
-    NEXUS_REGISTRY = 'host.docker.internal:5000'
+    NEXUS_REGISTRY = 'localhost:30050'
     IMAGE_TAG = 'myversion' 
   }
 
