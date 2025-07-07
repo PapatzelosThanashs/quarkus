@@ -16,7 +16,8 @@ spec:
     tty: true
   - name: docker
     image: docker:dind
-    privileged: true 
+    securityContext:
+      privileged: true  
   - name: helm
     image: alpine/helm:3.18
     command:
