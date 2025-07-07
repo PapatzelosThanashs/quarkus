@@ -15,7 +15,7 @@ spec:
     - cat
     tty: true
   - name: docker
-    image: docker:dind
+    image: dind:myversion 
     securityContext:
       privileged: true  
   - name: helm
