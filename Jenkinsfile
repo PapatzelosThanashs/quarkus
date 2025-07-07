@@ -11,6 +11,7 @@ spec:
   containers:
   - name: myagent
     image: docker:dind
+    privileged:true
     command:
     - cat
     tty: true
@@ -27,7 +28,7 @@ spec:
     environment {
     KUBECONFIG = "${WORKSPACE}/kubeconfig"  // kubectl will use this path
     DOCKER_CREDS_ID = 'nexus-creds' 
-    NEXUS_REGISTRY = 'localhost:30050'
+    NEXUS_REGISTRY = 'nexus-nexus-repository-manager:5000'
     IMAGE_TAG = 'myversion' 
   }
 
@@ -50,7 +51,7 @@ spec:
         stage('Build-jar') {
             steps {
                   container('myagent') {
-                    sh 'mvn clean package'
+                    sh './mvnw clean package'
                 }
                 // Run Maven build
                 //sh './mvnw clean package'
