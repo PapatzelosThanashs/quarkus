@@ -105,14 +105,14 @@ spec:
             steps {
                 container('myagent') {
                     script {
-                                docker.withRegistry("http://${NEXUS_REGISTRY}", "${DOCKER_CREDS_ID}") {
-                                myImage.push("${IMAGE_TAG}")
-                                
+                            docker.withRegistry("http://${NEXUS_REGISTRY}", "${DOCKER_CREDS_ID}") {
+                            myImage.push("${IMAGE_TAG}") 
+
+                            }   
+                    }
                 }
             }
-        }
-
-
+        }   
         
 
 
