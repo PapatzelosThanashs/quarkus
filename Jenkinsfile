@@ -102,6 +102,22 @@ spec:
             }
         }
 
+        stage('Package-Push-chart') {
+            steps {
+                container('helm') {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE'), usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh '''
+
+                            helm package ./my-chart
+                            curl -u $USERNAME:$PASSWORD --upload-file my-chart-1.0.0.tgz http://localhost:32129/repository/helm-repo/
+                            
+                        '''
+                    }  
+                }
+            }
+        }
+         
+
         stage('Push-docker-image') {
             steps {
                 container('myagent') {
