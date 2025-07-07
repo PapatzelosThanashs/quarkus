@@ -7,6 +7,7 @@ kind: Pod
 metadata:
     namespace: jenkins
 spec:
+  dnsPolicy: ClusterFirst 
   containers:
   - name: myagent
     image: myagent:v1
