@@ -32,6 +32,9 @@ spec:
 
     environment {
     KUBECONFIG = "${WORKSPACE}/kubeconfig"  // kubectl will use this path
+    DOCKER_CREDS_ID = 'nexus-creds' 
+    NEXUS_REGISTRY = 'docker.nexus.local'
+    IMAGE_TAG = 'myversion' 
   }
 
     stages {
@@ -63,8 +66,10 @@ spec:
         stage('Build-image') {
             steps {
                   container('myagent') {
-                    sh 'docker build -t quarkus:myversion .'
-                    //sh 'buildah push myimage:latest docker://myregistry/myimage:latest'
+                    script {
+                                myImage = docker.build("${NEXUS_REGISTRY}/quarkus:${IMAGE_TAG}")
+
+                            }
                    
  
                 }
@@ -95,6 +100,20 @@ spec:
                 }
             }
         }
+
+        stage('Push-docker-image') {
+            steps {
+                container('myagent') {
+                    script {
+                                docker.withRegistry("http://${NEXUS_REGISTRY}", "${DOCKER_CREDS_ID}") {
+                                myImage.push("${IMAGE_TAG}")
+                                
+                }
+            }
+        }
+
+
+        
 
 
     }
