@@ -1,3 +1,5 @@
+@Library('shared-lib') _
+
 pipeline {
     agent {
         kubernetes {
@@ -40,6 +42,7 @@ spec:
             steps {
                 container('mvn') {
                      checkout scm
+                     function()
                 }
             
             }
