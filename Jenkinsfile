@@ -66,9 +66,10 @@
                     container('helm') {
                         helmWithKubeconfig {
                             sh 'helm install my-chart ./my-chart -n jenkins'
-                    }
+                        }
+                    }      
                 }
-            }
+            }    
 
             stage('Package-Push-chart') {
                 steps {
