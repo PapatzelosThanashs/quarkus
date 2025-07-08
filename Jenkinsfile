@@ -139,7 +139,7 @@ spec:
                             helm repo add --username $USERNAME --password $PASSWORD helm-nexus http://nexus-nexus-repository-manager:8081/repository/helm-repo/
                             helm repo update
                             helm repo list
-                            helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins
+                            helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins --set image.repository=nexus-nexus-repository-manager:5000/quarkus  --set image.tag=myversion
                             
                         '''
                     }  
