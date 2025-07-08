@@ -133,7 +133,7 @@ spec:
                 container('helm') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE'), usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
-                            
+                            export KUBECONFIG=$KUBECONFIG_FILE
                             helm repo add --username $USERNAME --password $PASSWORD helm-nexus http://nexus-nexus-repository-manager:8081/repository/helm-repo/
                             helm repo update
                             helm repo list
