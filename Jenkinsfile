@@ -137,6 +137,7 @@ spec:
                             helm repo add --username $USERNAME --password $PASSWORD helm-nexus http://nexus-nexus-repository-manager:8081/repository/helm-repo/
                             helm repo update
                             helm repo list
+                            helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins
                             
                         '''
                     }  
