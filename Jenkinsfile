@@ -122,7 +122,8 @@
                                 helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins --set image.repository=nexus-nexus-repository-manager:5000/quarkus  --set image.tag=myversion
                                 
                           
-                            }    '''
+                            '''
+                            }
                         }  
                     }
                 }
