@@ -28,7 +28,7 @@ spec:
         }
     }
 
-    environment {
+    environment { 
     KUBECONFIG = "${WORKSPACE}/kubeconfig"  // kubectl will use this path
     DOCKER_CREDS_ID = 'nexus-creds' 
     NEXUS_REGISTRY = 'nexus-nexus-repository-manager:5000'
