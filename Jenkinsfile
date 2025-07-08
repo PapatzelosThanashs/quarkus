@@ -64,18 +64,8 @@
             stage('Deploy-chart') {
                 steps {
                     container('helm') {
-                        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
-                            withEnv(["KUBECONFIG=${KUBECONFIG_FILE}"]) {
-                                sh '''
-                                    # Replace 127.0.0.1 with host IP reachable from the pod
-                                    sed -i 's|127.0.0.1|host.docker.internal|g' $KUBECONFIG_FILE
-
-                                    helm install my-chart ./my-chart -n jenkins
-                                    
-                                    
-                                '''
-                            }
-                        }
+                        helmWithKubeconfig {
+                            sh 'helm install my-chart ./my-chart -n jenkins'
                     }
                 }
             }
@@ -111,20 +101,13 @@
             stage('Add-install-nexus-chart') {
                 steps {
                     container('helm') {
-                        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE'), usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                            withEnv(["KUBECONFIG=${KUBECONFIG_FILE}"]) {
-                            sh '''
-                                # Replace 127.0.0.1 with host IP reachable from the pod
-                                sed -i 's|127.0.0.1|host.docker.internal|g' $KUBECONFIG_FILE
-                                helm repo add --username $USERNAME --password $PASSWORD helm-nexus http://nexus-nexus-repository-manager:8081/repository/helm-repo/
-                                helm repo update
-                                helm repo list
-                                helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins --set image.repository=nexus-nexus-repository-manager:5000/quarkus  --set image.tag=myversion
-                                
-                          
-                            '''
-                            }
-                        }  
+                        helmWithKubeconfig {
+                            sh 'helm repo add --username $USERNAME --password $PASSWORD helm-nexus http://nexus-nexus-repository-manager:8081/repository/helm-repo/'
+                            sh 'helm repo update'
+                            sh 'helm repo list'
+                            sh 'helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins --set image.repository=nexus-nexus-repository-manager:5000/quarkus  --set image.tag=myversion'    
+
+                        }
                     }
                 }
             }   
