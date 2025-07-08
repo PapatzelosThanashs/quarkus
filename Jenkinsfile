@@ -1,7 +1,11 @@
 @Library('shared-lib@main') _
-k8sPodTemplate {
+
     pipeline {
-        agent none
+         agent {
+            kubernetes {
+                yaml libraryResource('podTemplates/mvn-docker-helm.yaml')
+            }
+        }   
 
         environment { 
         KUBECONFIG = "${WORKSPACE}/kubeconfig"  // kubectl will use this path
@@ -127,4 +131,3 @@ k8sPodTemplate {
 
         }
     }
-}
