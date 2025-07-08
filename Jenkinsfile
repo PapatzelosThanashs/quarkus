@@ -133,6 +133,8 @@ spec:
                 container('helm') {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE'), usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
+                            # Replace 127.0.0.1 with host IP reachable from the pod
+                            sed -i 's|127.0.0.1|host.docker.internal|g' $KUBECONFIG_FILE
                             export KUBECONFIG=$KUBECONFIG_FILE
                             helm repo add --username $USERNAME --password $PASSWORD helm-nexus http://nexus-nexus-repository-manager:8081/repository/helm-repo/
                             helm repo update
