@@ -43,7 +43,7 @@
 
             stage('Build-image') {
                 steps {
-                    container('docker-cli') {
+                    container('docker') {
                         script {
                                     myImage = docker.build("${NEXUS_REGISTRY}/quarkus:${IMAGE_TAG}")
 
@@ -61,15 +61,7 @@
 
                                 //helm version
                                 //helm list -n jenkins
-            stage('Deploy-chart') {
-                steps {
-                    container('helm') {
-                        helmWithKubeconfig {
-                            sh 'helm install my-chart ./my-chart -n jenkins'
-                        }
-                    }      
-                }
-            }    
+              
 
             stage('Package-Push-chart') {
                 steps {
@@ -88,7 +80,7 @@
 
             stage('Push-docker-image') {
                 steps {
-                    container('docker-cli') {
+                    container('docker') {
                         script {
                                 docker.withRegistry("http://${NEXUS_REGISTRY}", "${DOCKER_CREDS_ID}") {
                                 myImage.push("${IMAGE_TAG}") 
