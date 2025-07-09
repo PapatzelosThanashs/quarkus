@@ -17,10 +17,10 @@
         stages {
             stage('Checkout') {
                 steps {
-                    container('mvn') {
+                   
                         checkout scm
-                        function()
-                    }
+                        
+                    
                 
                 }
             }
