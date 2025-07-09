@@ -10,7 +10,7 @@
         environment { 
         KUBECONFIG = "${WORKSPACE}/kubeconfig"  // kubectl will use this path
         DOCKER_CREDS_ID = 'nexus-creds' 
-        NEXUS_REGISTRY = 'nexus-nexus-repository-manager'
+        NEXUS_REGISTRY = 'nexus.docker:30050'
         IMAGE_TAG = 'myversion' 
     }
 
