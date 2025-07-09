@@ -98,7 +98,7 @@
                             sh 'helm repo add --username $USERNAME --password $PASSWORD helm-nexus http://nexus-nexus-repository-manager:8081/repository/helm-repo/'
                             sh 'helm repo update'
                             sh 'helm repo list'
-                            sh 'helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins --set image.repository=nexus-nexus-repository-manager:5000/quarkus  --set image.tag=myversion'    
+                            sh 'helm install helm-nexus helm-nexus/my-chart --version 0.1.0 -n jenkins --set image.repository=nexus.docker:30050/quarkus  --set image.tag=myversion'    
 
                         }
                     }
