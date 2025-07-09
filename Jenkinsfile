@@ -17,7 +17,7 @@
         stages {
             stage('Checkout') {
                 steps {
-                    container('docker-cli') {
+                    container('mvn') {
                         checkout scm
                         function()
                     }
@@ -43,7 +43,7 @@
 
             stage('Build-image') {
                 steps {
-                    container('docker-cli') {
+                    container('docker') {
                         script {
                                     myImage = docker.build("${NEXUS_REGISTRY}/quarkus:${IMAGE_TAG}")
 
@@ -88,7 +88,7 @@
 
             stage('Push-docker-image') {
                 steps {
-                    container('docker-cli') {
+                    container('docker') {
                         script {
                                 docker.withRegistry("http://${NEXUS_REGISTRY}", "${DOCKER_CREDS_ID}") {
                                 myImage.push("${IMAGE_TAG}") 
