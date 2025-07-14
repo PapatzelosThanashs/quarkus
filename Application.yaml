@@ -25,5 +25,5 @@ spec:
     automated:                             # Optional: auto-sync changes
       prune: true                          # Remove old resources not in new chart
       selfHeal: true                       # Revert manual changes in the cluster
-  #syncOptions:
-    #- CreateNamespace=true               # Auto-create namespace if it doesn't exist
+  syncOptions:
+    - CreateNamespace=true               # Auto-create namespace if it doesn't exist
