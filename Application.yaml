@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: http://nexus-nexus-repository-manager.jenkins:8081/repository/helm-repo/
     chart: my-chart                          # Chart name in your Helm repo
-    targetRevision: 0.1.250
+    targetRevision: 0.1.251
 
     #helm:
       #values: |                            # Inline Helm values (optional)
