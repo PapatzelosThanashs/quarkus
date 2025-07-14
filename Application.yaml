@@ -15,7 +15,7 @@ spec:
        # image:
         #  repository: mycompany-registry.com/my-app
         #  tag: 1.2.3
-       # replicaCount: 1
+       # replicaCount: 1 
 
   destination:
     server:  https://kubernetes.default.svc # Default points to current cluster
