@@ -12,7 +12,7 @@ spec:
     targetRevision: 0.1.234                 # Version of the chart to deploy (from Chart.yaml)
     #helm:
       #values: |                            # Inline Helm values (optional)
-       # image:
+       # image: 
         #  repository: mycompany-registry.com/my-app
         #  tag: 1.2.3
        # replicaCount: 1 
