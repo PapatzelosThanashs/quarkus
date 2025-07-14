@@ -19,7 +19,7 @@ spec:
 
   destination:
     server:  https://kubernetes.default.svc # Default points to current cluster
-    namespace: production1                    # Target namespace in your cluster
+    namespace: production                    # Target namespace in your cluster
 
   syncPolicy:
     automated:                             # Optional: auto-sync changes
